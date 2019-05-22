@@ -30,7 +30,7 @@ class Simple_login
 			$this->CI->session->set_userdata('akses_level', $akses_level);
 
 			//redirect ke halaman admin yang dproteksi
-			redirect(base_url('admin/dasbor'),'refresh');
+			//redirect(base_url('admin/dasbor'),'refresh');
 			
 		} else {
 			// jika gagal, maka login kembali
