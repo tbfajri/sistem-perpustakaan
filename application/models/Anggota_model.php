@@ -19,21 +19,32 @@ class Anggota_model extends CI_Model {
 		return $query->result();
 	}
 
+// Listing all user
+	public function listing_aktif(){
+
+		$this->db->select('*');
+		$this->db->from('t_anggota');
+		$this->db->order_by('id_anggota', 'desc');
+		$this->db->where('status', 'aktif');
+		$query = $this->db->get();
+		return $query->result();
+	}
+
 	public function tambah($data)
 	{
-		$this->db->insert('pelanggan', $data);
+		$this->db->insert('t_anggota', $data);
 	}
 
 	public function delete($data)
 	{
 		$this->db->where('id_anggota', $data['id_anggota']);
-		$this->db->delete('pelanggan', $data);
+		$this->db->delete('t_anggota', $data);
 	}
 
 	public function detail($id_anggota){
 
 		$this->db->select('*');
-		$this->db->from('pelanggan');
+		$this->db->from('t_anggota');
 		$this->db->where('id_anggota', $id_anggota);
 		$this->db->order_by('id_anggota', 'desc');
 		$query = $this->db->get();
@@ -41,13 +52,21 @@ class Anggota_model extends CI_Model {
 
 	}
 
+	public function read($slug_anggota){
 
+		$this->db->select('*');
+		$this->db->from('t_anggota');
+		$this->db->where('slug_anggota', $slug_anggota);
+		$this->db->order_by('id_anggota', 'desc');
+		$query = $this->db->get();
+		return $query->row();
 
-	
+	}
+
 	public function edit($data){
 
 		$this->db->where('id_anggota', $data['id_anggota']);
-		$this->db->update('pelanggan', $data);
+		$this->db->update('t_anggota', $data);
 
 
 	}
@@ -56,5 +75,5 @@ class Anggota_model extends CI_Model {
 
 }
 
-/* End of file Pelanggan_model.php */
-/* Location: ./application/models/Pelanggan_model.php */
+/* End of file Buku_model.php */
+/* Location: ./application/models/Buku_model.php */

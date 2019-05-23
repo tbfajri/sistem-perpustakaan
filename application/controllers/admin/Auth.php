@@ -3,17 +3,25 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Auth extends CI_Controller {
 
-	public function __construct()
-	{
-		parent::__construct();
-		$this->load->model('auth_model');
- 		// halaman ini di proteksi bagi yang sudah login
-
-	}
+	/**
+	 * Index Page for this controller.
+	 *
+	 * Maps to the following URL
+	 * 		http://example.com/index.php/welcome
+	 *	- or -
+	 * 		http://example.com/index.php/welcome/index
+	 *	- or -
+	 * Since this controller is set as the default controller in
+	 * config/routes.php, it's displayed at http://example.com/
+	 *
+	 * So any other public methods not prefixed with an underscore will
+	 * map to /index.php/welcome/<method_name>
+	 * @see https://codeigniter.com/user_guide/general/urls.html
+	 */
 	public function index()
 	{
 		// validasi
-		$this->form_validation->set_rules('email', 'Email/Username', 'required',
+		$this->form_validation->set_rules('username', 'username', 'required',
 			array('required' => '%s harus diisi'));
 
 		$this->form_validation->set_rules('password', 'Password', 'required',
@@ -21,28 +29,23 @@ class Auth extends CI_Controller {
 
 		if($this->form_validation->run())
 		{
-			$email = $this->input->post('email');
+			$username = $this->input->post('username');
 			$password = $this->input->post('password');
 			// proses ke simpel login
-			$this->simple_pelanggan->login($email, $password);
+			$this->simple_login->login($username, $password);
 		}
 
-		// end validasi
-
-		$data = array(	'title' => 'Login Pelanggan',
-						'isi'	=> 'masuk/list'
-					);
-		$this->load->view('layout/wrapper', $data, FALSE);
+		// end validasi	
+		$data = array( 'title' => 'Login Adminstrator');
+		$this->load->view('admin/login/list', $data, FALSE);
+		
 	}
 
+	// function logout
 	public function logout(){
 
-	// ambil fungsi logout di Simple_pelanggan yang sudah di set di autoload libraries
-	$this->simple_pelanggan->logout();
+		// ambil fungsi logout dari simple login
+		$this->simple_login->logout();
+	}
 
 }
-
-}
-
-/* End of file Auth.php */
-/* Location: ./application/controllers/Auth.php */
