@@ -30,7 +30,7 @@ class Simple_login
 		
 
 			//redirect ke halaman admin yang dproteksi
-			//redirect(base_url('admin/dasbor'),'refresh');
+			redirect(base_url('admin/dasbor'),'refresh');
 			
 		} else {
 			// jika gagal, maka login kembali

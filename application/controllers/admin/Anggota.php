@@ -20,9 +20,9 @@ class Anggota extends CI_Controller {
 	{
 		$anggota = $this->anggota_model->listing();
 
-		$data = array( 	'title' => 'Data anggota',
+		$data = array( 	'title'	 	=> 'Data anggota',
 						'anggota'	=> $anggota,
-						'isi'	=> 'admin/anggota/list'
+						'isi'		=> 'admin/anggota/list'
 
 					);
 		$this->load->view('admin/layout/wrapper', $data, FALSE);
